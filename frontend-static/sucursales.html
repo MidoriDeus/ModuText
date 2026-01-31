@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Direcciones</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="sucursales.css">
+</head>
+<body>
+
+<div>
+    <h1 class="saludo">
+        Hola, Usuario123
+    </h1>
+
+        <div class="container main-container">
+            <!-- Formulario para añadir direcciones -->
+            <div class="form-container">
+                <form id="ingSucursales">
+                    <h2 class="mb-4">Añadir Dirección</h2>
+                    <div id="mensaje" class="alert" role="alert" style="display: none;"></div>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre Dirección</label>
+                        <input type="text" name="nombre_dir" class="form-control" id="nombre" placeholder="Almacén Central" >
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-md-8">
+                            <label for="calle" class="form-label">Calle</label>
+                            <input type="text" name="calle_dir" class="form-control" id="calle" placeholder="Chacabuco" >
+                        </div>
+                        <div class="mb-3 col-md-4">
+                            <label for="numcalle" class="form-label">Número</label>
+                            <input type="number" name="num_calle_dir" class="form-control" id="numcalle" placeholder="#333" >
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fono" class="form-label">Teléfono</label>
+                        <input type="text" name="fono_dir" class="form-control" id="fono" placeholder="Teléfono de contacto" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="comuna" class="form-label">Comuna</label>
+                        <input type="text" name="comuna_dir" class="form-control" id="comuna" placeholder="Concepción" >
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="confirmarFormulario()">Añadir Dirección</button>
+
+                </form>
+                <a href="retiro.html" class="back-button btn btn-custom">Volver</a>
+            </div>
+
+            <!-- Tabla para listar direcciones -->
+            <div class="table-container">
+                <h2 class="mb-4">Direcciones Registradas</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Dirección</th>
+                            <th>Calle</th>
+                            <th>Número</th>
+                            <th>Teléfono</th>
+                            <th>Comuna</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Almacén Central</td>
+                            <td>Av. O'Higgins</td>
+                            <td>1234</td>
+                            <td>912345678</td>
+                            <td>Concepción</td>
+                            <td>
+                                <a href="#" class="icon-action" title="Modificar" onclick="editarDireccion(1); return false;">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="#" class="icon-action" title="Eliminar" onclick="eliminarDireccion(1); return false;">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sucursal Norte</td>
+                            <td>Calle Prueba</td>
+                            <td>567</td>
+                            <td>987654321</td>
+                            <td>Chillán</td>
+                            <td>
+                                <a href="#" class="icon-action" title="Modificar" onclick="editarDireccion(2); return false;">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="#" class="icon-action" title="Eliminar" onclick="eliminarDireccion(2); return false;">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Depósito Sur</td>
+                            <td>Camino Real</td>
+                            <td>890</td>
+                            <td>955566677</td>
+                            <td>Talcahuano</td>
+                            <td>
+                                <a href="#" class="icon-action" title="Modificar" onclick="editarDireccion(3); return false;">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="#" class="icon-action" title="Eliminar" onclick="eliminarDireccion(3); return false;">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function confirmarFormulario() {
+            // Simular confirmación de formulario
+            Swal.fire({
+                title: '¿Agregar nueva dirección?',
+                text: "Verifique que todos los datos sean correctos.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, agregar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Simular proceso de guardado
+                    Swal.fire({
+                        title: 'Guardando...',
+                        html: '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>',
+                        showConfirmButton: false,
+                        allowOutsideClick: false
+                    });
+                    
+                    setTimeout(function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡Éxito!',
+                            text: 'La dirección ha sido agregada correctamente.',
+                            confirmButtonColor: '#3085d6'
+                        });
+                        
+                        // Limpiar formulario
+                        document.getElementById('ingSucursales').reset();
+                    }, 1500);
+                }
+            });
+        }
+        
+        function editarDireccion(id) {
+            Swal.fire({
+                title: 'Editar Dirección',
+                html: `
+                    <div class="mb-3">
+                        <label for="editNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="editNombre" value="Nombre de Ejemplo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCalle" class="form-label">Calle</label>
+                        <input type="text" class="form-control" id="editCalle" value="Calle de Ejemplo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editNumero" class="form-label">Número</label>
+                        <input type="number" class="form-control" id="editNumero" value="123">
+                    </div>
+                `,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Guardar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Éxito!',
+                        text: 'La dirección ha sido actualizada correctamente.',
+                        confirmButtonColor: '#3085d6'
+                    });
+                }
+            });
+        }
+        
+        function eliminarDireccion(id) {
+            Swal.fire({
+                title: '¿Eliminar dirección?',
+                text: "Esta acción no se podrá deshacer.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#999',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Eliminado!',
+                        text: 'La dirección ha sido eliminada correctamente.',
+                        confirmButtonColor: '#3085d6'
+                    });
+                }
+            });
+        }
+    </script>
+    <style>
+            /* CSS adicional para disposición en columnas */
+            .main-container {
+                display: flex;
+                gap: 40px; /* Aumentar el espacio entre las columnas */
+                margin-top: 20px;
+            }
+            /* Estilos de la tabla */
+            .table-container h2 {
+                color: #333333; /* Cambiar el color del título */
+            }
+            .table {
+                border-collapse: separate;
+                border-spacing: 0;
+                width: 100%;
+                background-color: #f8f9fa; /* Color de fondo de la tabla */
+            }
+            .table thead {
+                background-color: #5F288F; /* Color de fondo de encabezado */
+                color: #ffffff; /* Color del texto del encabezado */
+            }
+            .table th, .table td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #dddddd; /* Color del borde inferior */
+            }
+            .table tbody tr:hover {
+                background-color: #f1f1f1; /* Efecto hover en las filas */
+            }
+            .table .icon-action {
+                color: #5F288F; /* Color base de los iconos */
+                font-size: 20px;
+                margin: 0 5px;
+                cursor: pointer;
+            }
+            .table .icon-action:hover {
+                color: #88D317; /* Color de hover para los iconos */
+            }
+
+            @media (max-width: 1000px) {
+
+            .main-container {
+                display: flex;
+                flex-direction:column;
+                gap: 40px; /* Aumentar el espacio entre las columnas */
+            }
+        }
+    </style>
+    </body>
+    </html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Retiro de Telas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="retiro.css">
+    <!-- Agregar SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <a href="login.html" class="logout-button btn-custom">Cerrar sesión</a>
+
+    <div class="main-container">
+        <div class="right-section">
+            <img src="img/retiro.png">
+        </div>
+        <div class="left-section">
+            <div class="d-flex justify-content-between align-items-start mt-4">
+                <img class="logo" src="./img/Marca - Blanco.png" alt="">
+            </div>
+            <div class="container">
+                <form id="retiroForm">
+                    <h2 class="saludo">
+                        Hola, Usuario123
+                    </h2>
+
+                    <h2 class="mb-4">Solicitud de Retiro de Telas</h2>
+                    <div class="mb-3">
+                        <label for="direccionRetiro" class="form-label">Dirección de Retiro</label>
+                        <select class="form-select" id="direccionRetiro" name="direccionRetiro" required>
+                            <option selected disabled>Seleccione una dirección</option>
+                            <option value="direccion1">Almacén Central - Concepción - Av. O'Higgins 1234</option>
+                            <option value="direccion2">Sucursal Norte - Chillán - Calle Prueba 567</option>
+                            <option value="direccion3">Depósito Sur - Talcahuano - Camino Real 890</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipoTela" class="form-label">Tipo de Tela</label>
+                        <select class="form-select" id="tipoTela" name="tipoTela" required>
+                            <option selected disabled>Seleccione un tipo de tela</option>
+                            <option value="algodon">Algodón</option>
+                            <option value="poliester">Poliéster</option>
+                            <option value="seda">Seda</option>
+                            <option value="lana">Lana</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad (kg)</label>
+                        <input type="range" id="sliderValue" class="form-range" min="1" max="300" value="25" oninput="syncManualInput(this.value)">
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="cantidadManual" name="cantidad" min="1" max="300" value="25" step="0.1" oninput="syncSliderInput(this.value)">
+                            <span class="input-group-text">kg</span>
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+                    <a href="sucursales.html" class="btn btn-primary">Administrar Direcciones</a>
+                </form>
+                <div id="successMessage" class="alert alert-success mt-4" style="display: none;">
+                    Solicitud de retiro enviada con éxito.
+                </div>
+                <div id="errorMessage" class="alert alert-danger mt-4" style="display: none;">
+                    Por favor, completa todos los campos obligatorios antes de enviar la solicitud.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function syncManualInput(value) {
+        document.getElementById('cantidadManual').value = value;
+    }
+
+    function syncSliderInput(value) {
+        document.getElementById('sliderValue').value = value;
+    }
+
+    document.getElementById("retiroForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const tipoTela = document.getElementById("tipoTela").value;
+        const direccionRetiro = document.getElementById("direccionRetiro").value;
+        const cantidadManual = document.getElementById("cantidadManual").value;
+
+        // Mostrar loading
+        Swal.fire({
+            title: 'Procesando solicitud...',
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false
+        });
+
+        if (!tipoTela || !direccionRetiro || cantidadManual <= 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, completa todos los campos obligatorios antes de enviar la solicitud.'
+            });
+            return;
+        }
+
+        // Simular envío exitoso
+        setTimeout(function() {
+            Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: 'Solicitud de retiro enviada correctamente. Se ha enviado un correo de confirmación.',
+                confirmButtonColor: '#3085d6'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Resetear el formulario
+                    document.getElementById("retiroForm").reset();
+                    document.getElementById("sliderValue").value = 25;
+                    document.getElementById("cantidadManual").value = 25;
+                }
+            });
+        }, 2000);
+    });
+</script>
+</body>
+</html>
