@@ -24,32 +24,25 @@ Este proyecto fue desarrollado como trabajo colaborativo con los estudiantes Vic
 ## Instalación Local
 
 1. Clona este repositorio
-2. Configura un servidor web con soporte para PHP y MySQL
+2. Configura un servidor web con soporte para PHP y MySQL (como XAMPP, WAMP o un servidor local)
 3. Importa la base de datos desde el archivo SQL correspondiente
 4. Configura las credenciales de la base de datos en `conexion.php`
-5. Configura las credenciales de correo electrónico en las variables de entorno
+5. Configura las credenciales de correo electrónico en los archivos correspondientes
 
-## Variables de Entorno
+## Configuración Requerida
 
-Para ejecutar esta aplicación, necesitarás configurar las siguientes variables de entorno:
+Para ejecutar esta aplicación, necesitarás configurar:
 
-```bash
-DB_HOST=localhost:3307
-DB_USER=root
-DB_PASS=
-DB_NAME=modutex
-EMAIL_USERNAME=drackracer@gmail.com
-EMAIL_PASSWORD=iyphkooslbxszvsc
-```
+1. Base de datos MySQL:
+   - Host: localhost:3307
+   - Usuario: root
+   - Contraseña: (vacía o la que tengas configurada)
+   - Nombre de la base de datos: modutex
 
-## Despliegue en Vercel
-
-Este proyecto puede ser desplegado en Vercel siguiendo estos pasos:
-
-1. Haz fork de este repositorio
-2. Importa el proyecto en Vercel
-3. Configura las variables de entorno mencionadas anteriormente en la configuración de Vercel
-4. Asegúrate de que la base de datos MySQL esté accesible externamente o utiliza un servicio de base de datos compatible
+2. Credenciales de correo electrónico:
+   - Archivo: `enviar_correo.php` y `procesar_retiro.php`
+   - Usuario: drackracer@gmail.com
+   - Contraseña: iyphkooslbxszvsc (usar contraseña de aplicación para Gmail)
 
 ## Seguridad
 

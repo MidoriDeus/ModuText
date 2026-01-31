@@ -107,14 +107,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($tipo_usuario === 'PARTICULAR') {
 
         // Datos del usuario "PARTICULAR"
-        $rut = trim($_POST['rut']);
-        $nombre = trim($_POST['nombre']);
-        $apellido_paterno = trim($_POST['app_paterno']);
-        $apellido_materno = trim($_POST['app_materno']);
-        $correo = filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL);
+        $rut = htmlspecialchars($_POST['rut']);
+        $nombre = htmlspecialchars($_POST['nombre']);
+        $apellido_paterno = htmlspecialchars($_POST['app_paterno']);
+        $apellido_materno = htmlspecialchars($_POST['app_materno']);
+        $correo = htmlspecialchars($_POST['correo']);
         $fono_per = filter_input(INPUT_POST, 'telefono', FILTER_SANITIZE_NUMBER_INT);
-        $password = $_POST['passwordP'];
-        $confirm_password = $_POST['confirmPasswordP'];
+        $password = htmlspecialchars($_POST['passwordP']);
+        $confirm_password = htmlspecialchars($_POST['confirmPasswordP']);
 
         list($fono_validado, $fonoOK) = validarTelefono($fono_per);
         // Validación de campos
@@ -164,12 +164,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } elseif ($tipo_usuario === 'EMPRESA') {
         // Datos del usuario "EMPRESA"
-        $rut_usuario = trim($_POST['rut_emp']);
-        $razon_social = trim($_POST['razon_social']);
-        $correo_emp = filter_var($_POST['correoE'], FILTER_VALIDATE_EMAIL);
+        $rut_usuario = htmlspecialchars($_POST['rut_emp']);
+        $razon_social = htmlspecialchars($_POST['razon_social']);
+        $correo_emp = htmlspecialchars($_POST['correoE']);
         $fono_emp = filter_input(INPUT_POST, 'fono_emp', FILTER_SANITIZE_NUMBER_INT);
-        $password = $_POST['passwordE'];
-        $confirm_password = $_POST['confirmPasswordE'];
+        $password = htmlspecialchars($_POST['passwordE']);
+        $confirm_password = htmlspecialchars($_POST['confirmPasswordE']);
 
         list($fono_validado, $fonoOK) = validarTelefono($fono_emp); 
 

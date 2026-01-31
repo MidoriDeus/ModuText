@@ -41,7 +41,7 @@ if (isset($_SESSION["rut_usuario"]) && isset($_SESSION["email_usuario"])) {
             <div class="container">
                 <form id="retiroForm">
                     <h2 class="saludo">
-                        <?php echo "Hola, " . (isset($_SESSION["rut_usuario"]) ? $_SESSION["rut_usuario"] : "Usuario"); ?>
+                        <?php echo "Hola, " . $_SESSION["rut_usuario"]; ?>
                     </h2>
                     
                     <h2 class="mb-4">Solicitud de Retiro de Telas</h2>
@@ -150,7 +150,7 @@ if (isset($_SESSION["rut_usuario"]) && isset($_SESSION["email_usuario"])) {
 
         const formData = new FormData(this);
 
-        fetch("/api/procesar_retiro.php", {
+        fetch("procesar_retiro.php", {
             method: "POST",
             body: formData
         })

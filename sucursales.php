@@ -30,7 +30,7 @@ $id_emp = isset($_SESSION["id_emp"]) ? $_SESSION["id_emp"] : null;
 <div>
     <h1 class="saludo">
         <?php
-        echo "Hola, " . (isset($_SESSION["rut_usuario"]) ? $_SESSION["rut_usuario"] : "Usuario"); // Muestra "Usuario" si no hay nombre
+        echo "Hola, " . ($_SESSION["nombres_usuario"] ?? "Usuario"); // Muestra "Usuario" si no hay nombre
         ?>
     </h1>
 

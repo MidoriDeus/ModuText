@@ -8,8 +8,8 @@ if (!$conexion) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST["rut_usuario"]) && !empty($_POST["password_usuario"])) {
-        $rut_usuario = trim($_POST["rut_usuario"]);
-        $password_usuario = $_POST["password_usuario"];
+        $rut_usuario = htmlspecialchars($_POST["rut_usuario"]);
+        $password_usuario = htmlspecialchars($_POST["password_usuario"]);
 
         // Preparar consulta para obtener el rut_usuario y password_usuario
         $stmt = $conexion->prepare("SELECT rut_usuario, password_usuario FROM usuario WHERE rut_usuario = ?");

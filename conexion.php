@@ -1,11 +1,6 @@
 <?php
 
-$conexion = new mysqli(
-    $_ENV['DB_HOST'] ?? 'localhost:3307',
-    $_ENV['DB_USER'] ?? 'root',
-    $_ENV['DB_PASS'] ?? '',
-    $_ENV['DB_NAME'] ?? 'modutex'
-);
+$conexion = new mysqli("localhost:3307", "root", "", "modutex");
 
 // Comprobar la conexión
 if ($conexion->connect_error) {
