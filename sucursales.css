@@ -1,0 +1,463 @@
+@font-face {
+    font-family: 'Canada';
+    src: url('./assets/Canada.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: auto; /* Permite el desplazamiento */
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('img/retiro-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -2;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+option:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+    border: 2px solid #5F288F;
+    box-shadow: 0 0 8px rgba(95, 40, 143, 0.5);
+}
+
+h1 {
+    font-size: 25px;
+    font-family: 'Canada', 'sans-serif';
+}
+
+h2 {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Canada', 'sans-serif';
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 500px;
+    width: 100%;
+    position: relative;
+}
+
+.form-range {
+    fill: #6e3667;
+}
+
+form label {
+    font-family: 'Canada', sans-serif;
+    font-size: 20px;
+}
+
+.back-button {
+    position: absolute;
+    bottom: 0px; /* Espacio desde la parte inferior */
+    right: 0px; /* Espacio desde la parte derecha */
+    background-color: #5F288F;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Canada', sans-serif;
+    width: 100px;
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+.back-button:hover {
+    background-color: #14c532;
+}
+
+.btn-primary {
+    background-color: #5F288F;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-family: 'Canada', sans-serif;
+}
+
+.btn-primary:hover {
+    background-color: #14c532;
+}
+
+.btn-orange {
+    background-color: orange;
+    color: white;
+}
+
+.saludo {
+    color: white;
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.form-container {
+    transition: all 0.5s ease-in-out;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+.form-container:not(.hidden) {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toggle-text {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Lista de sucursales */
+ul.sucursal-list {
+    list-style-type: none !important;
+    padding: 0;
+    margin: 0;
+}
+
+ul.sucursal-list li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+
+#edit-delete-buttons.hidden {
+    display: none;
+}
+
+#edit-delete-buttons {
+    margin-top: 10px;
+}
+/* Contenedor principal de SweetAlert2 */
+.swal2-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999 !important;
+}
+
+/* Popup de SweetAlert2 */
+.swal2-popup {
+    width: 90% !important; /* Ancho relativo para dispositivos pequeños */
+    max-width: 500px !important; /* Máximo ancho para dispositivos más grandes */
+    max-height: 80% !important; /* Máxima altura para evitar overflow en dispositivos pequeños */
+    overflow: auto !important; /* Permitir desplazamiento si es necesario */
+    padding: 20px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important; /* Asegura que el padding esté incluido en el ancho */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 600px) {
+    .swal2-popup {
+        padding: 10px !important; /* Reducir padding en dispositivos pequeños */
+        font-size: 14px !important; /* Ajustar tamaño de fuente en dispositivos pequeños */
+    }
+}
+
+/* Estilos para los botones de SweetAlert2 */
+
+/* Botón Confirmar (Morado) */
+.btn-morado {
+    background-color: #5F288F !important; /* Color morado */
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+}
+
+.btn-morado:hover {
+    background-color: #7a3fb5 !important; /* Morado más claro */
+}
+
+/* Botón Cancelar (Rojo) */
+.btn-rojo {
+    background-color: #d32f2f !important; /* Color rojo */
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+}
+
+.btn-rojo:hover {
+    background-color: #b71c1c !important; /* Rojo más oscuro */
+}
+/* Botón Confirmar - Morado */
+.swal2-confirm {
+    background-color: #fc0101 !important; /* Morado */
+    color: white !important; /* Color del texto */
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 10px 20px !important;
+    font-family: 'Canada', sans-serif !important;
+    font-size: 16px !important;
+    margin: 5px !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+
+    
+}
+
+/* Botón Cancelar - Rojo */
+.swal2-cancel {
+    background-color: #5F288F!important; /* Rojo */
+    color: white !important; /* Color del texto */
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 10px 20px !important;
+    font-family: 'Canada', sans-serif !important;
+    font-size: 16px !important;
+    margin: 5px !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+}
+
+/* Efectos hover */
+.swal2-confirm:hover {
+    background-color:  #b71c1c !important; /* Morado más claro */
+}
+
+.swal2-cancel:hover {
+    background-color: #7a3fb5 !important; /* Rojo más oscuro */
+}
+
+
+
+/* Ajustes generales para pantallas pequeñas */
+@media (max-width: 1000px) {
+    body {
+        font-size: 16px;
+        
+    }
+    
+    .container {
+        width: 100%;
+        padding: 15px;
+        flex-direction: column;
+        min-width: 100%;
+    }
+
+    h1, h2 {
+        font-size: 22px;
+    }
+
+    .back-button {
+        font-size: 14px;
+        padding: 8px 16px;
+        width: 80px;
+    }
+
+    .btn-primary, .btn-orange {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .form-container input, .form-container select, .form-container button {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .table th, .table td {
+        padding: 8px 12px;
+    }
+
+    .table .icon-action {
+        font-size: 18px;
+        margin: 0 3px;
+    }
+
+    .form-container {
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    .table tbody tr {
+        padding: 5px;
+    }
+
+    .table thead {
+        font-size: 16px;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        
+    }
+
+    .back-button {
+        width: 70px;
+    }
+
+    .table th, .table td {
+        padding: 5px 8px;
+    }
+
+    .btn-primary, .btn-orange {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .form-container input, .form-container select, .form-container button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .saludo {
+        font-size: 20px;
+    }
+
+    .container {
+        padding: 10px;
+        min-width: 300px;
+        width: 85%;
+    }
+
+    .table-container {
+        font-size: 14px;
+    }
+
+    .table {
+        font-size: 14px;
+        border-spacing: 0;
+    }
+
+    .form-container {
+        margin-top: 10px;
+    }
+
+    .form-range {
+        width: 100%;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 12px; /* Reducción del tamaño de fuente para una mejor visualización en móviles */
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    .back-button {
+        width: 70px; /* Ajustar el tamaño del botón para pantallas pequeñas */
+    }
+
+    .table th, .table td {
+        padding: 4px 6px; /* Reducir el espacio entre celdas para ahorrar espacio */
+    }
+
+    .btn-primary, .btn-orange {
+        padding: 4px 10px; /* Botones más pequeños */
+        font-size: 12px;
+    }
+
+    .form-container input, .form-container select, .form-container button {
+        font-size: 12px; /* Reducir el tamaño de fuente en formularios */
+        padding: 6px; /* Reducir el padding */
+    }
+
+    .saludo {
+        font-size: 18px; /* Ajustar el tamaño de los textos de bienvenida */
+    }
+
+    .container {
+        padding: 8px; /* Ajustar el padding */
+        width: 73%; /* Asegurarse de que la caja ocupe más espacio disponible */
+        min-width: 280px; /* Minimizar el ancho */
+    }
+
+    .table-container {
+        font-size: 12px; /* Reducir el tamaño de la fuente en las tablas */
+    }
+
+    .table {
+        font-size: 12px; /* Ajustar las tablas */
+        border-spacing: 0;
+    }
+
+    .form-container {
+        margin-top: 8px; /* Reducir el margen superior */
+    }
+
+    .form-range {
+        width: 100%; /* Asegurarse de que los controles de rango no se corten */
+    }
+
+    /* Ajuste de elementos de navegación */
+    .nav-link {
+        font-size: 14px; /* Tamaño adecuado para enlaces de navegación */
+    }
+
+    .header {
+        font-size: 16px; /* Ajuste del tamaño de la cabecera */
+    }
+
+    /* Ajuste de imágenes */
+    .img-responsive {
+        width: 100%; /* Asegurarse de que las imágenes no se corten en pantallas pequeñas */
+        height: auto;
+    }
+}
+
